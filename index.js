@@ -1,6 +1,9 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     res.send(`
@@ -13,25 +16,24 @@ app.get('/', (req, res) => {
     `);
 });
 
-const bodyParser = (req, res, next) => {
-    if(req.method === 'POST'){
-        req.on('data', (data)=> {
-            const parsedDta = data.toString('utf8').split('&');
-            let body = {};
-            parsedDta.forEach(element => {
-                let param = element.split('=');
-                body[param[0]] = param[1]
-            });
-            req.body = body;
-            next();
-        });
-    }
-    else
-        next();
-};
+// const bodyParser = (req, res, next) => {
+//     if(req.method === 'POST'){
+//         req.on('data', (data)=> {
+//             const parsedDta = data.toString('utf8').split('&');
+//             let body = {};
+//             parsedDta.forEach(element => {
+//                 let param = element.split('=');
+//                 body[param[0]] = param[1]
+//             });
+//             req.body = body;
+//             next();
+//         });
+//     }
+//     else
+//         next();
+// };
 
-app.post('/', bodyParser, (req, res) => {
-    console.log(req.body);
+app.post('/', (req, res) => {
     res.send(req.body);
 });
 
