@@ -2,6 +2,7 @@ const express = require('express');
 const userRepo = require('../../repositories/users');
 const signupTemplate = require('../../views/admin/auth/signup');
 const signinTemplate = require('../../views/admin/auth/signin');
+const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
 
@@ -9,7 +10,14 @@ router.get('/signup', (req, res) => {
     res.send(signupTemplate({req}));
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', [
+    check('email').trim().normalizeEmail().isEmail(),
+    check('pwd').trim().isLength({min: 4, max: 8}),
+    check('pwdConfirm').trim().isLength({min: 4, max: 8})
+], async (req, res) => {
+    const errors = validationResult(req);
+    console.log(errors);
+    
     const {email, pwd, pwdConfirm} = req.body;
     const existingUser = await userRepo.getOneBy({email: email});
 
