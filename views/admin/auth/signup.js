@@ -1,13 +1,33 @@
 const layout = require("../layout");
+const { errorHandler } = require("../../helper");
 
-module.exports = ({ req }) => {
+module.exports = ({ req, errors }) => {
   return layout({
-    content: `<p>Your session id: ${req.session.ID} </p>
-            <form method="POST">
-                <input placeholder="Email" name="email">
-                <input placeholder="Password" name="pwd">
-                <input placeholder="Password Confirmation" name="pwdConfirm">
-                <button>Sign Up</button>
-            </form>`,
+    content: `<div class="container">
+    <div class="columns is-centered">
+      <div class="column is-one-quarter">
+        <form method="POST">
+          <h1 class="title">Sign Up</h1>
+          <div class="field">
+            <label class="label">Email</label>
+            <input required class="input" placeholder="Email" name="email" />
+            <p class="help is-danger">${errorHandler(errors, "email")}</p>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <input required class="input" placeholder="Password" name="pwd" type="password" />
+            <p class="help is-danger">${errorHandler(errors, "pwd")}</p>
+          </div>
+          <div class="field">
+            <label class="label">Password Confirmation</label>
+            <input required class="input" placeholder="Password Confirmation" name="pwdConfirm" type="password" />
+            <p class="help is-danger">${errorHandler(errors, "pwdConfirm")}</p>
+          </div>
+          <button class="button is-primary">Submit</button>
+        </form>
+        <a href="/signin">Have an account? Sign In</a>
+      </div>
+    </div>
+  </div>`,
   });
 };
