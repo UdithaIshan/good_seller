@@ -48,4 +48,6 @@ module.exports = {
     }
     return true;
   }),
+  titleValidator: check('title').trim().isLength({ min:5, max: 40 }),
+  priceValidator: check('price').trim().toFloat().isLength({min:1}),
 };
