@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 
 const { hanldeErrors, authCheck } = require("./middleware");
-const { titleValidator, priceValidator } = require("../validations");
+const { titleValidator, priceValidator } = require("./validations");
 
 const productsRepo = require("../../repositories/products");
 

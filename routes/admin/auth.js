@@ -4,7 +4,7 @@ const { hanldeErrors } = require('./middleware');
 const userRepo = require("../../repositories/users");
 const signupTemplate = require("../../views/admin/auth/signup");
 const signinTemplate = require("../../views/admin/auth/signin");
-const { emailValidator, passwordValidator, pwdConfiramationValidator, loginPasswordValidator, loginEmailValidator } = require('../validations');
+const { emailValidator, passwordValidator, pwdConfiramationValidator, loginPasswordValidator, loginEmailValidator } = require('./validations');
 
 const router = express.Router();
 
