@@ -68,6 +68,7 @@ class Repository {
         }
     
         Object.assign(record, params);
+        await this.writeAll(data);
       }
 }
 
