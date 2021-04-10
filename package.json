@@ -4,12 +4,11 @@
   "description": "An Ecommerce app that runs on node.js",
   "main": "index.js",
   "scripts": {
-    "start": "index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
+    "node": "14.x"
   },
   "keywords": [],
   "author": "Uditha Ishan",
