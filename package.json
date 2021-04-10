@@ -4,6 +4,7 @@
   "description": "An Ecommerce app that runs on node.js",
   "main": "index.js",
   "scripts": {
+    "start": "index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],
