@@ -48,4 +48,6 @@ module.exports = {
     }
     return true;
   }),
+  titleValidator: check("title").trim().isLength({ min: 5, max: 40 }).withMessage('Title must be between 5 and 40 characters'),
+  priceValidator: check("price").trim().toFloat().isLength({ min: 1 }).withMessage('Price must be included'),
 };
